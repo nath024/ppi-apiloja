@@ -1,0 +1,16 @@
+import { Component, computed, inject } from '@angular/core';
+import { CarrinhoService } from '../services/carrinho-service';
+
+@Component({
+  imports: [],
+  selector: 'app-carrinho',
+  styleUrl: './carrinho.scss',
+  templateUrl: './carrinho.html',
+})
+export class Carrinho {
+  readonly #carrinhoService = inject(CarrinhoService)
+
+  quantidadeItens = computed(() =>
+    this.#carrinhoService.itens().reduce((soma, item) => soma + item.quantidade, 0)
+  )
+}
